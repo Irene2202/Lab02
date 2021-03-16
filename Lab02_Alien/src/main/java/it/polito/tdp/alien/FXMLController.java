@@ -48,8 +48,9 @@ public class FXMLController {
     			txtResult.setText("ERRORE: formato errato");
     			return;
     		}
-    		Word w=new Word(parolaAliena, traduzione);
-    		model.addWord(w);
+    		//Word w=new Word(parolaAliena, traduzione);
+    		//model.addWord(w);
+    		model.addWord(parolaAliena, traduzione);
     		txtResult.setText("Inserimento nuova traduzione avvenuto con successo");
     		txtParola.clear();
     		return;
@@ -59,13 +60,24 @@ public class FXMLController {
     		return;
     	}
     	
+    	String risultato=this.model.ricercaTraduzione(testo);
+    	if(risultato==null) {
+    		txtResult.setText("Parola non presente nel dizionario");
+    	}
+    	else {
+    		txtResult.setText(risultato);
+    	}
+    	
+    	
+    	/* Con uso classe Word
     	Word w=model.ricercaTraduzione(testo);
     	if(w!=null) {
     		txtResult.setText(w.getTraduzione());
     	} 
     	else {
     		txtResult.setText("Traduzione non presente nel dizionario");
-    	}
+    	}*/
+    	
 
     }
     
