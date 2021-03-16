@@ -43,5 +43,9 @@ public class Dizionario {
 		else
 			return true;*/
 	}
+	
+	public void clear() {
+		dizionario.clear();
+	}
 
 }

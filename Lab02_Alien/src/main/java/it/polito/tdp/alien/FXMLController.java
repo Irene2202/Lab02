@@ -28,7 +28,9 @@ public class FXMLController {
 
     @FXML
     void handleClear(ActionEvent event) {
-
+    	this.model.clear();
+    	txtResult.clear();
+    	txtParola.clear();
     }
 
     @FXML
@@ -42,6 +44,10 @@ public class FXMLController {
     	
     	if(testo.contains(" ")==true) {
     		String[] parole=testo.split(" ");
+    		if(parole.length>2) {
+    			txtResult.setText("ERRORE: formato errato");
+    			return;
+    		}
     		String parolaAliena=parole[0];
     		String traduzione=parole[1];
     		if((this.caretteriValidi(parolaAliena) && this.caretteriValidi(traduzione))==false) {
@@ -83,9 +89,14 @@ public class FXMLController {
     
     public boolean caretteriValidi(String s) {
     	int i;
+    	boolean trovatoSpeciale=false;
     	for(i=0; i<s.length(); i++) {
     		if((s.charAt(i)>='a' && s.charAt(i)<='z')==false){
-    			return false;
+    			if(s.charAt(i)=='?' && trovatoSpeciale==false) {
+    				trovatoSpeciale=true;
+    			} else {
+    				return false;
+    			}
     		}
     	}
     	return true;
