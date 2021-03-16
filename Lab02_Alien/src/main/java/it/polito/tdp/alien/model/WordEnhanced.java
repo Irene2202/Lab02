@@ -7,6 +7,31 @@ public class WordEnhanced {
 	private String parolaAliena;
 	private List<String> traduzione;
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((parolaAliena == null) ? 0 : parolaAliena.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		WordEnhanced other = (WordEnhanced) obj;
+		if (parolaAliena == null) {
+			if (other.parolaAliena != null)
+				return false;
+		} else if (!parolaAliena.equals(other.parolaAliena))
+			return false;
+		return true;
+	}
+
 	public WordEnhanced(String parolaAliena, String traduzione) {
 		this.parolaAliena = parolaAliena;
 		this.traduzione=new ArrayList<>();
@@ -15,10 +40,6 @@ public class WordEnhanced {
 
 	public List<String> getListaTraduzione() {
 		return traduzione;
-	}
-
-	public void setTraduzione(List<String> traduzione) {
-		this.traduzione = traduzione;
 	}
 
 	public String getParolaAliena() {
@@ -30,7 +51,7 @@ public class WordEnhanced {
 	}
 	
 	public String toString() {
-		String risultato="";
+		String risultato="Traduzione di "+parolaAliena+":\n";
 		int i;
 		for(i=0; i<traduzione.size(); i++) {
 			risultato=risultato+traduzione.get(i)+"\n";

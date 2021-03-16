@@ -28,7 +28,7 @@ public class FXMLController {
 
     @FXML
     void handleClear(ActionEvent event) {
-    	this.model.clear();
+    	//this.model.clear();
     	txtResult.clear();
     	txtParola.clear();
     }

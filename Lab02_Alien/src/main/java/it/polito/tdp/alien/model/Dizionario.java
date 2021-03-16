@@ -22,11 +22,37 @@ public class Dizionario {
 	}*/
 	
 	public String ricercaTraduzione(String alieno) {
-		WordEnhanced risultato=this.dizionario.get(alieno);
-		if(risultato!=null) {
-			return risultato.toString();
+		WordEnhanced risultato=null;
+		if(alieno.contains("?")) {
+			String traduzione="";
+			char[] alfabeto = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+			int i;
+			char c;
+			for(i=0; i<alfabeto.length; i++) {
+				c=alfabeto[i];
+				alieno=alieno.replace('?', c);
+				//System.out.println(alieno);
+				
+				risultato=this.dizionario.get(alieno);
+				if(risultato!=null) {
+					traduzione=traduzione+ risultato.toString();
+				}
+			}
+			
+			if(traduzione=="")
+				return null;
+			
+			return traduzione;
 		}
-		return null;
+		else {
+			risultato=this.dizionario.get(alieno);
+			if(risultato!=null) {
+				return risultato.toString();
+			}
+			else
+				return null;
+		}
+			
 	}
 	
 	public boolean parolaGiaPresente(String alieno, String traduzione) {
