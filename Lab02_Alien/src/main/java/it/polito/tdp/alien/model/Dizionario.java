@@ -25,15 +25,13 @@ public class Dizionario {
 		WordEnhanced risultato=null;
 		if(alieno.contains("?")) {
 			String traduzione="";
-			char[] alfabeto = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-			int i;
+			String nuovoAlieno="";
+
 			char c;
-			for(i=0; i<alfabeto.length; i++) {
-				c=alfabeto[i];
-				alieno=alieno.replace('?', c);
-				//System.out.println(alieno);
+			for(c='a'; c<'z'; c++) {
+				nuovoAlieno=alieno.replace('?', c);
 				
-				risultato=this.dizionario.get(alieno);
+				risultato=this.dizionario.get(nuovoAlieno);
 				if(risultato!=null) {
 					traduzione=traduzione+ risultato.toString();
 				}
